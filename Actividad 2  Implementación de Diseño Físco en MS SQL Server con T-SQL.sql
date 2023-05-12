@@ -1,12 +1,20 @@
 /* Si la base de datos ya existe la eliminamos */
 DROP DATABASE IF EXISTS db_SalesClothes;
 
+--Actividad 1
+--Utilizando código T-SQL deberá crear la base de datos db_SalesClothes.
+--Agregar una captura de pantalla verificando la existencia de la base de datos db_SalesClothes
+
 /* Crear base de datos Sales Clothes */
 CREATE DATABASE db_SalesClothes;
 
 /* Poner en uso la base de datos */
 USE db_SalesClothes;
 
+
+
+--Actividad 2
+--Utilizando código SQL crear las tablas de acuerdo a la siguiente imagen:
 
 /* Crear tabla client */
 DROP TABLE IF EXISTS client;
@@ -100,12 +108,6 @@ CREATE TABLE seller (
     CONSTRAINT seller_pk PRIMARY KEY  (id)
 );
 
--- Reference: sale_seller (table: sale)
-ALTER TABLE sale ADD CONSTRAINT sale_seller
-    FOREIGN KEY (seller_id)
-    REFERENCES seller (id);
-
-
 -- Table: clothes
 DROP TABLE IF EXISTS clothes
 CREATE TABLE clothes (
@@ -129,11 +131,22 @@ CREATE TABLE sale_detail (
     CONSTRAINT sale_detail_pk PRIMARY KEY  (id)
 );
 
+
+
+--Actividad 3
+--Utilizando código T-SQL crear las relaciones entre las tablas de acuerdo a la siguiente imagen:
+--Utilizando T-SQL deberá listar las relaciones creadas cuyo resultado deberá ser:
+--Eliminar base de datos db_SalesClothes
+
 -- Reference: sale_detail_clothes (table: sale_detail)
 ALTER TABLE sale_detail ADD CONSTRAINT sale_detail_clothes
     FOREIGN KEY (clothes_id)
     REFERENCES clothes (id);
 
+	-- Reference: sale_seller (table: sale)
+ALTER TABLE sale ADD CONSTRAINT sale_seller
+    FOREIGN KEY (seller_id)
+    REFERENCES seller (id);
 
 -- Reference: sale_detail_sale (table: sale_detail)
 ALTER TABLE sale_detail ADD CONSTRAINT sale_detail_sale
